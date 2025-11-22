@@ -200,12 +200,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 16437084}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -8.1, z: 0}
-  m_LocalScale: {x: 1.4244365, y: 3.272879, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.008525697, y: -0.38367558, z: -10}
+  m_LocalScale: {x: 0.0999532, y: 0.15083948, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1991747174}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &16437087
 MonoBehaviour:
@@ -452,6 +452,7 @@ GameObject:
   - component: {fileID: 1991747174}
   - component: {fileID: 1991747173}
   - component: {fileID: 1991747172}
+  - component: {fileID: 1991747175}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -524,9 +525,23 @@ Transform:
   m_LocalPosition: {x: -0.1215, y: 0.2249, z: 10}
   m_LocalScale: {x: 14.251036, y: 21.69776, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 16437086}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1991747175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991747171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46f20452eb5865b45ba33d0b01782a6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bgScrollSpeed: 0.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -534,4 +549,3 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 1991747174}
-  - {fileID: 16437086}

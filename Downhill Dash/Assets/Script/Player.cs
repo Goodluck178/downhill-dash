@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
         //Set Player Boundary
         //Converting to viewport point
         Vector3 playerBoundary = mainCamera.WorldToViewportPoint(transform.position);
-        playerBoundary.x = Mathf.Clamp(playerBoundary.x,0.08f, 0.96f);
+        playerBoundary.x = Mathf.Clamp(playerBoundary.x,0.06f, 0.96f);
 
         //Converting back to World view
         transform.position = mainCamera.ViewportToWorldPoint(playerBoundary);
