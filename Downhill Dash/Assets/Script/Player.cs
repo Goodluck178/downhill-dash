@@ -2,40 +2,37 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    //So you can control the speed from the inspector
-    [SerializeField] float speed = 5f;
-    Camera mainCamera;
+    [SerializeField] float playerSpeed = 5f;
+    Vector2 movement;
+    Camera gameCamera;
+    float moveX;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        mainCamera = Camera.main;
+        gameCamera = Camera.main;
     }
 
-    void Move()
+    void MovePlayer()
     {
-        //Movement along the x axis
-        float horizontal = Input.GetAxis("Horizontal");
-
-        //Calculate the player movement within the x Axis and making the game frame rate independent
-        Vector2 movement = new Vector2(horizontal, 0f) * speed * Time.deltaTime;
-
-        //Apply movement  to the player
+        //getting user input
+        moveX = Input.GetAxis("Horizontal");
+        //player movement iin x-axis without clamping
+        movement = Vector2.zero;//initialize to zero:
+        movement.x = moveX;
+        movement *= playerSpeed * Time.deltaTime;
         transform.Translate(movement);
 
-        //Set Player Boundary
-        //Converting to viewport point
-        Vector3 playerBoundary = mainCamera.WorldToViewportPoint(transform.position);
-        playerBoundary.x = Mathf.Clamp(playerBoundary.x,0.06f, 0.96f);
+        //creating boundary for player movement along x axis
+        Vector3 playerMoveBoundary = gameCamera.WorldToViewportPoint(transform.position);
+        playerMoveBoundary.x = Mathf.Clamp(playerMoveBoundary.x, 0.06f, 0.96f);
+        transform.position = gameCamera.ViewportToWorldPoint(playerMoveBoundary);
 
-        //Converting back to World view
-        transform.position = mainCamera.ViewportToWorldPoint(playerBoundary);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Move();
-
-
+        MovePlayer();
     }
 }
