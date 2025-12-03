@@ -4,8 +4,8 @@ using System.Collections.Generic;
 public class ObstacleMovement : MonoBehaviour
 {
     [SerializeField] List<Transform> obstacleWaypointList;
-    [SerializeField] float obstacleMoveSpeed = 2f;
     int obstacleWaypointIndex = 0;
+    [SerializeField] WaveManager waveManager;
     DestroyAny destroyAny;
 
     void Awake()
@@ -18,7 +18,9 @@ public class ObstacleMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       
+        //set the obstacle on the first path of the waypoint
+        obstacleWaypointList = waveManager.GetPathPrefab;
+
         //set the current obstacle position on the first waypoint
         Vector3 currentObstaclePosition = obstacleWaypointList[obstacleWaypointIndex].transform.position;
     }
@@ -37,7 +39,7 @@ public class ObstacleMovement : MonoBehaviour
             //ensure the obstacle movement remain in 2d
             targetPosition.z = 0f;
             //set the obstacle speed in each frameset
-            float obstacleMoveSpeedOnFrame = obstacleMoveSpeed * Time.deltaTime;
+            float obstacleMoveSpeedOnFrame = waveManager.GetObstacleMovementSpeed * Time.deltaTime;
             //move obstacle from current position to targetposition per frameset
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, obstacleMoveSpeedOnFrame);
             // Advance to next waypoint if reached

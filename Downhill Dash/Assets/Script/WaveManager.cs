@@ -1,0 +1,49 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "WaveManager", menuName = "Scriptable Objects/WaveManager")]
+public class WaveManager : ScriptableObject
+{
+    [SerializeField] float obstacleMovementSpeed = 3f;
+    [SerializeField] GameObject obstaclePrefab;
+    [SerializeField] GameObject pathPrefab;
+    [SerializeField] int numberOfObstacleToSpawn = 5;
+    [SerializeField] float delaySpawnTime = 1.0f;
+
+    //encapsulate all
+    public GameObject GetObstaclePrefab
+    {
+        get { return obstaclePrefab; }
+        set { obstaclePrefab = value; }
+    }
+    public List<Transform> GetPathPrefab
+    {
+        get
+        {
+            List<Transform> wavePathList = new List<Transform>();
+            foreach (Transform waypoint in pathPrefab.transform)
+            {
+                wavePathList.Add(waypoint);
+            }
+            return wavePathList;
+        }
+    }
+    public int GetNumberOfObstacleToSpawn
+    {
+        get { return numberOfObstacleToSpawn; }
+        set { numberOfObstacleToSpawn = value; }
+
+    }
+    public float GetDelaySpawnTime
+    {
+        get { return delaySpawnTime; }
+        set { delaySpawnTime = value; }
+
+    }
+    public float GetObstacleMovementSpeed
+    {
+        get { return obstacleMovementSpeed; }
+        set { obstacleMovementSpeed = value; }
+
+    }
+}

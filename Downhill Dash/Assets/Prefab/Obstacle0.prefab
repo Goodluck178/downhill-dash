@@ -106,7 +106,7 @@ MonoBehaviour:
   - {fileID: 1188781082612984196, guid: 6b8fe63fceeb8354895ce765b02f8130, type: 3}
   - {fileID: 616482093585565829, guid: a626e95fb8ad8c843ad5ab230f013caa, type: 3}
   - {fileID: 470465143657953335, guid: 328d23bebd569c443b9f16ae58f31d6c, type: 3}
-  obstacleMoveSpeed: 2
+  waveManager: {fileID: 11400000, guid: d5a29fddb89ddfa43b3e3e98461f85ca, type: 2}
 --- !u!114 &3973440513730066288
 MonoBehaviour:
   m_ObjectHideFlags: 0
