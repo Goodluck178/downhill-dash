@@ -11,11 +11,26 @@ public class ObstacleSpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        waveManager = waveManagerList[waveManagerListIndex];
-        StartCoroutine(SpawnObstacleInSingleWave());
+        StartCoroutine(LoopWavesForever());
     }
 
-   
+    IEnumerator LoopWavesForever()
+    {
+        while (true)
+        {
+            yield return StartCoroutine(SpawnAllWaves());
+        }
+    }
+
+    IEnumerator SpawnAllWaves()
+    {
+        for (int waveIndex = waveManagerListIndex; waveIndex < waveManagerList.Count; waveIndex++)
+        {
+            //start from first wave
+            waveManager = waveManagerList[waveIndex]; //  Assign waveManager here
+            yield return StartCoroutine(SpawnObstacleInSingleWave());
+        }
+    }
 
     // Using coroutine to spawn one wave of enemies
     IEnumerator SpawnObstacleInSingleWave()
