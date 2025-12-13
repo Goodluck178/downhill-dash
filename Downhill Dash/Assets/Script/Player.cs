@@ -7,13 +7,10 @@ public class Player : MonoBehaviour
     Camera gameCamera;
     float moveX;
     [SerializeField] int health = 100;
-    DestroyAny destroyAny;
 
-    private void Awake()
-    {
-        destroyAny = GetComponent<DestroyAny>();
-    }
 
+
+    //Method that reads damage from damageDealer carrier gameObject by type obstacle
     private void OnCollisionEnter2D(Collision2D collision)
     {
         DamageDealer damageDealer = collision.gameObject.GetComponent<DamageDealer>();
@@ -29,8 +26,8 @@ public class Player : MonoBehaviour
 
             if (health <= 0)
             {
-                destroyAny.GetDamageAttached();//destroy the gameObject
-                damageDealer.Hit();//destroy the damage dealer when player is dead
+                GetComponent<DestroyAny>().GetDamageAttached();//destroy the gameObject
+                damageDealer.Hit();//destroy the damageDealer gameObject when player is dead
             }
             else
             {
@@ -51,7 +48,7 @@ public class Player : MonoBehaviour
         //getting user input
         moveX = Input.GetAxis("Horizontal");
         //player movement iin x-axis without clamping
-        movement = Vector2.zero;//initialize to zero:
+        movement = Vector2.zero;//nitialize to zero:
         movement.x = moveX;
         movement *= playerSpeed * Time.deltaTime;
         transform.Translate(movement);
@@ -62,6 +59,25 @@ public class Player : MonoBehaviour
         transform.position = gameCamera.ViewportToWorldPoint(playerMoveBoundary);
 
     }
+
+    //method to add extra health points by pointGivers and read damage from the obstacle bullets
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // Check for PointGiver
+        PointGiver pointGiver = collision.gameObject.GetComponent<PointGiver>();
+        if (pointGiver != null)
+        {
+            int life = pointGiver.GetHealth();
+            health += life;
+            Debug.Log("Health received: " + life);
+
+            pointGiver.Hit(); // pickup consumed
+            return; // exit early, no need to check damage
+        }
+
+       
+    }
+
 
     // Update is called once per frame
     void Update()
