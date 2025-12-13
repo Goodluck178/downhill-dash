@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
             }
             else
             {
-                damageDealer.OnHit();//destroys the damagedealer component when it collides with the player and the player is still alife
+                damageDealer.OnHit();//destroys the damage dealer component when it collides with the player and the player is still alife
             }
         }
 
@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
         //getting user input
         moveX = Input.GetAxis("Horizontal");
         //player movement iin x-axis without clamping
-        movement = Vector2.zero;//nitialize to zero:
+        movement = Vector2.zero;//initialize to zero:
         movement.x = moveX;
         movement *= playerSpeed * Time.deltaTime;
         transform.Translate(movement);
@@ -75,7 +75,26 @@ public class Player : MonoBehaviour
             return; // exit early, no need to check damage
         }
 
-       
+        // Check for DamageDealer from obstacle bullet
+        DamageDealer damageDealer = collision.gameObject.GetComponent<DamageDealer>();
+        if (damageDealer != null)
+        {
+            string attackerName = collision.gameObject.name;
+            int damage = damageDealer.GetDamage(attackerName);
+            Debug.Log("Hit by: " + attackerName + " | Damage: " + damage);
+
+            health -= damage;
+
+            if (health <= 0)
+            {
+                GetComponent<DestroyAny>().GetDamageAttached();
+                damageDealer.Hit();
+            }
+            else
+            {
+                damageDealer.OnHit();
+            }
+        }
     }
 
 

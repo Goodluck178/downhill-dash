@@ -44,8 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bed8e8f545fe3b43966b125bf518035, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointGiverManager: {fileID: 0}
+  pointGiverManager: {fileID: 11400000, guid: b299af7f400201a4795ef54083f9d108, type: 2}
   spawnTimeCounter: 0
   spawnCounter: 0
   minimumX: -3
   maximumX: 3
+  waveManager: {fileID: 0}
+  waveManager3: {fileID: 0}

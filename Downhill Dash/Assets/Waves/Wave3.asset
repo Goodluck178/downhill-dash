@@ -17,3 +17,4 @@ MonoBehaviour:
   pathPrefab: {fileID: 3119055912205823552, guid: b4b83cf68f666a546933cbccb9ff5147, type: 3}
   numberOfObstacleToSpawn: 5
   delaySpawnTime: 1
+  obstaclesCanShoot: 0

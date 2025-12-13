@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 5
-  health: 100
+  health: 1000
 --- !u!61 &6436268686979312456
 BoxCollider2D:
   m_ObjectHideFlags: 0
