@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8af9bea7c98ef784aacb370f8f870086, type: 3}
   m_Name: PointGiverWave
   m_EditorClassIdentifier: 
-  pointGiverPrefab: {fileID: 0}
+  pointGiverPrefab: {fileID: 1986288201706370656, guid: 7055e7cf7c19ad94da02e8a9f2b8b991, type: 3}
   minimumTimeToSpawn: 0.01
   maximumTimeToSpawn: 10
