@@ -104,6 +104,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 5
   health: 1000
+  explosionVFX: {fileID: 5943206216075847786, guid: af7a01b7fbe6b384d8274e3f73ff9e31, type: 3}
+  explosionTime: 1
+  destroyObstacleSound: {fileID: 8300000, guid: 2927b1beb4945db4a9ced06cba0d3222, type: 3}
+  destroyObstacleSoundVolume: 0.8
+  destroyPlayerSound: {fileID: 8300000, guid: d2a99cb2ef273474ba630fa4623ca975, type: 3}
+  destroyPlayerSoundVolume: 0.8
+  destroyPointGiverSound: {fileID: 8300000, guid: 9ae83cd4979f1ec4f94ec0fd423a791a, type: 3}
+  destroyPointGiverSoundVolume: 0.8
+  playerMoveSound: {fileID: 8300000, guid: b99e0ee7a82a9884589f524d177c39f8, type: 3}
+  playerMoveSoundVolume: 0.8
+  playerDeathSound: {fileID: 8300000, guid: 1b77d41aba0dddf43ab4543848df937f, type: 3}
+  playerDeathSoundVolume: 0.8
 --- !u!61 &6436268686979312456
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -196,10 +196,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e67dfb5c066a5744ebaf265689fab948, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 1
   enemyBulletPrefab: {fileID: 3720246792263619110, guid: d19383f8086c20b44997db3795c4dddf, type: 3}
   minimumTimeBeforeShots: 0.01
   maximumTimeBeforeShots: 2
   countDownCounter: 0
+  ObstacleShootSound: {fileID: 8300000, guid: ca361a5baa40958409514918cc65f5dd, type: 3}
+  ObstacleShootSoundVolume: 0.8
 --- !u!114 &-7972147427723571227
 MonoBehaviour:
   m_ObjectHideFlags: 0
