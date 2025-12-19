@@ -359,6 +359,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: StartGameCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3064120118625555790, guid: 66df42c99224ff04ea30d83237d56665, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3064120118625555790, guid: 66df42c99224ff04ea30d83237d56665, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadSceneByQuit
+      objectReference: {fileID: 0}
     - target: {fileID: 3129169970579310732, guid: 66df42c99224ff04ea30d83237d56665, type: 3}
       propertyPath: m_Pivot.x
       value: 0
