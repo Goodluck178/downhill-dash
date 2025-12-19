@@ -62,7 +62,7 @@ public class LevelManager : MonoBehaviour
 
     {
 
-        SceneManager.LoadScene(gameOverSceneName);
+        SceneManager.LoadScene("GameOver");
 
     }
 
