@@ -11,7 +11,7 @@ public class Obstacle : MonoBehaviour
     [SerializeField] GameObject enemyBulletPrefab;
     IEnumerator obstacleShots;
     [SerializeField] float minimumTimeBeforeShots = 0.01f;
-    [SerializeField] float maximumTimeBeforeShots = 2f;
+    [SerializeField] float maximumTimeBeforeShots = 3f;
     [SerializeField] float countDownCounter;
     bool canShoot = false;
     [SerializeField] AudioClip ObstacleShootSound;
