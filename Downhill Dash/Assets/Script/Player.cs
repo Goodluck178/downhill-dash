@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] AudioClip playerDeathSound;
 
-    [SerializeField][Range(0, 1)] float playerDeathSoundVolume = 0.8f;
+    [SerializeField][Range(0, 1)] float playerDeathSoundVolume = 0.7f;
 
     // UI for health display
 
