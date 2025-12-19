@@ -1,4 +1,7 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI; // For Text
+using TMPro;
 
 public class Player : MonoBehaviour
 
@@ -38,6 +41,45 @@ public class Player : MonoBehaviour
 
     [SerializeField][Range(0, 1)] float playerDeathSoundVolume = 0.8f;
 
+    // UI for health display
+
+    [SerializeField] TextMeshProUGUI healthText;
+    private LevelManager levelManager;
+
+
+    void Awake()
+
+    {
+
+        // Load persistent health
+
+        health = GameState.PlayerHealth > 0 ? GameState.PlayerHealth : 100; // Default 100 if first time
+        levelManager = FindFirstObjectByType<LevelManager>();
+    }
+
+    void Start()
+
+    {
+
+        gameCamera = Camera.main;
+
+        UpdateHealthDisplay(); // Initial display
+
+    }
+
+    void UpdateHealthDisplay()
+
+    {
+
+        if (healthText != null)
+
+        {
+
+            healthText.text = "Health: " + health;
+
+        }
+
+    }
 
     //Method that reads damage from damageDealer carrier gameObject by type obstacle
 
@@ -59,6 +101,8 @@ public class Player : MonoBehaviour
 
             health -= damage;
 
+            GameState.PlayerHealth = health; // Persist
+
             GameObject explosion = Instantiate(explosionVFX, transform.position, Quaternion.identity);
 
             Destroy(explosion, explosionTime);
@@ -76,30 +120,24 @@ public class Player : MonoBehaviour
                 GetComponent<DestroyAny>().GetDamageAttached();//destroy the gameObject
 
                 damageDealer.Hit();//destroy the damageDealer gameObject when player is dead
-
+                levelManager.LoadSceneByName("GameOver");
             }
 
             else
 
             {
 
-                damageDealer.OnHit();//destroys the damage dealer component when it collides with the player and the player is still a life
+                damageDealer.OnHit();//destroys the damage dealer component when it collides with the player and the player is still alife
 
             }
+
+            UpdateHealthDisplay();
 
         }
 
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-
-    void Start()
-
-    {
-
-        gameCamera = Camera.main;
-
-    }
 
     void MovePlayer()
 
@@ -165,6 +203,8 @@ public class Player : MonoBehaviour
 
             pointGiver.Hit(); // pickup consumed
 
+            UpdateHealthDisplay();
+
             return; // exit early, no need to check damage
 
         }
@@ -185,6 +225,8 @@ public class Player : MonoBehaviour
 
             health -= damage;
 
+            GameState.PlayerHealth = health; // Persist
+
             GameObject explosion = Instantiate(explosionVFX, transform.position, Quaternion.identity);
 
             Destroy(explosion, explosionTime);
@@ -200,6 +242,7 @@ public class Player : MonoBehaviour
                 GetComponent<DestroyAny>().GetDamageAttached();
 
                 damageDealer.Hit();
+                levelManager.LoadSceneByName("GameOver");
 
             }
 
@@ -210,6 +253,8 @@ public class Player : MonoBehaviour
                 damageDealer.OnHit();
 
             }
+
+            UpdateHealthDisplay();
 
         }
 
@@ -223,6 +268,18 @@ public class Player : MonoBehaviour
     {
 
         MovePlayer();
+
+        UpdateHealthDisplay(); // Keep updated every frame
+
+    }
+
+    void OnDestroy()
+
+    {
+
+        // Save health when leaving scene (safety)
+
+        GameState.PlayerHealth = health;
 
     }
 
