@@ -1,252 +1,170 @@
 using System.Collections;
-
 using UnityEngine;
-
 using UnityEngine.SceneManagement;
 
 public class PointGiverSpawner : MonoBehaviour
-
 {
-
     [SerializeField] PointGiverManager pointGiverManager;
-
     [SerializeField] float spawnTimeCounter;
-
     [SerializeField] int spawnCounter;
 
-    IEnumerator spawnNewPointGiverNow;//declaring the variable
-
     [SerializeField] float minimumX = -3f;
-
     [SerializeField] float maximumX = 3f;
 
-    int direction = 1; // 1 = moving right, -1 = moving left
-
+    int direction = 1;
     float pointGiverAcceleration = 2f;
 
     [SerializeField] WaveManager waveManager;
-
     [SerializeField] WaveManager waveManager3;
 
     private string currentLevel;
-
     private LevelManager levelManager;
 
     void Awake()
-
     {
-
-        spawnCounter = GameState.SpawnCounter;
-
         currentLevel = SceneManager.GetActiveScene().name;
-
         levelManager = FindFirstObjectByType<LevelManager>();
 
+        // Always load the saved spawn count
+        spawnCounter = GameState.SpawnCounter;
+
+        // RoadRampage startup rules
         if (currentLevel == "DownhillDash")
-
         {
-
-            if (GameState.SpawnCounter > 20 || GameState.SpawnCounter == 0)
-
-            {
-
-                GameState.SpawnCounter = 0;
-
-                spawnCounter = 0;
-
-                GameState.PlayerHealth = 100;
-
-                DisableObstaclesShooting();
-
-            }
-
+            ResetSpawnerState();       // includes health reset
+            DisableObstaclesShooting();
         }
 
+        // Level1 startup rules
+        if (currentLevel == "Level1")
+        {
+            ResetSpawnerState_NoHealthReset();  // NEW
+            EnableObstaclesShooting();
+        }
     }
+
+    private void ResetSpawnerState_NoHealthReset()
+    {
+        GameState.SpawnCounter = 0;
+        spawnCounter = 0;
+        // DO NOT reset GameState.PlayerHealth here
+    }
+
 
     void Start()
-
     {
-
-        spawnNewPointGiverNow = SpawnNow();// assigning value to the variable
-
-        spawnTimeCounter = Random.Range(pointGiverManager.GetMaximumTimeToSpawn(), pointGiverManager.GetMaximumTimeToSpawn() + 1f);
-
+        spawnTimeCounter = Random.Range(
+            pointGiverManager.GetMinimumTimeToSpawn(),
+            pointGiverManager.GetMaximumTimeToSpawn() + 1f
+        );
     }
 
-    public void EnableObstaclesShooting()
-
+    //Clean reset logic
+    private void ResetSpawnerState()
     {
+        GameState.SpawnCounter = 0;
+        spawnCounter = 0;
+        GameState.PlayerHealth = 100;
+    }
 
+    //Enable/Disable obstacle shooting
+    public void EnableObstaclesShooting()
+    {
         if (waveManager != null) waveManager.EnableObstaclesShooting();
-
         if (waveManager3 != null) waveManager3.EnableObstaclesShooting();
-
     }
 
     public void DisableObstaclesShooting()
-
     {
-
         if (waveManager != null) waveManager.DisableObstaclesShooting();
-
         if (waveManager3 != null) waveManager3.DisableObstaclesShooting();
-
     }
 
-
+    //Movement logic
     void MovePointGiverContainer()
-
     {
+        Vector2 pos = transform.position;
+        pos.x += direction * pointGiverAcceleration * Time.deltaTime;
 
-        // Current position
-
-        Vector2 currentPosition = transform.position;
-
-        // Move along X axis
-
-        currentPosition.x += direction * pointGiverAcceleration * Time.deltaTime;
-
-        // Check boundaries
-
-        if (currentPosition.x >= maximumX)
-
+        if (pos.x >= maximumX)
         {
-
-            currentPosition.x = maximumX;
-
-            direction = -1; // reverse direction
-
+            pos.x = maximumX;
+            direction = -1;
+        }
+        else if (pos.x <= minimumX)
+        {
+            pos.x = minimumX;
+            direction = 1;
         }
 
-        else if (currentPosition.x <= minimumX)
-
-        {
-
-            currentPosition.x = minimumX;
-
-            direction = 1; // reverse direction
-
-        }
-
-        // Apply movement
-
-        transform.position = currentPosition;
-
+        transform.position = pos;
     }
 
+    //  Main spawn logic
     void SpawnPointGiver()
-
     {
-
-        // CRITICAL FIX: Check GameOver FIRST
-
+        // GameOver check
         if (spawnCounter >= 20)
-
         {
-
             if (levelManager != null)
-
             {
-
                 GameState.SpawnCounter = 0;
-
                 GameState.PlayerHealth = 100;
-
                 DisableObstaclesShooting();
-
-                levelManager.LoadSceneByName("GameOver");
-
+                levelManager.LoadGameOver();
             }
-
             return;
-
         }
 
-        // Spawn logic SECOND
-
+        //  Spawn new point givers
         spawnTimeCounter -= Time.deltaTime;
-
         if (spawnTimeCounter <= 0 && spawnCounter < 20)
-
         {
-
-            StartCoroutine(spawnNewPointGiverNow);
-
+            StartCoroutine(SpawnNow());
             spawnCounter++;
-
             GameState.SpawnCounter = spawnCounter;
 
             spawnTimeCounter = Random.Range(
-
                 pointGiverManager.GetMinimumTimeToSpawn(),
-
                 pointGiverManager.GetMaximumTimeToSpawn() + 1f
-
             );
-
         }
 
-        // Level transition
-
+        // Transition from RoadRampage  Level1
         if (spawnCounter == 10 && currentLevel == "DownhillDash")
-
         {
-
             if (levelManager != null)
-
             {
-
                 EnableObstaclesShooting();
-
                 levelManager.LoadSceneWithDelay("Level1");
-
             }
-
         }
-
     }
 
+    //  Safe coroutine (no reuse)
     IEnumerator SpawnNow()
-
     {
+        GameObject newPointGiver = Instantiate(
+            pointGiverManager.GetPointGiverPrefab(),
+            transform.position,
+            Quaternion.identity
+        );
 
-        while (true)
+        newPointGiver.GetComponent<Rigidbody2D>().linearVelocityY = -1f;
 
-        {
-
-            GameObject newPointGiver = Instantiate(pointGiverManager.GetPointGiverPrefab(), transform.position, Quaternion.identity);
-
-            newPointGiver.GetComponent<Rigidbody2D>().linearVelocityY = -1f;
-
-            //applying coroutine delay
-
-            yield return new WaitForSeconds(spawnTimeCounter);
-
-        }
-
+        yield return null;
     }
-
-
-    // Update is called once per frame
 
     void Update()
-
     {
-
         MovePointGiverContainer();
-
         SpawnPointGiver();
-
     }
 
+    // Stop coroutine leaks
     void OnDestroy()
-
     {
-
         GameState.SpawnCounter = spawnCounter;
-
+        StopAllCoroutines();
     }
-
 }
-
