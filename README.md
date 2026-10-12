@@ -1,2 +1,2 @@
-# school-Assignment
+# Academic
 Downhill Dash
