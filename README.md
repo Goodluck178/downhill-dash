@@ -1,5 +1,5 @@
-# Academic
-Downhill Dash
+# Academic Project
+
 
 # Downhill Dash
 
