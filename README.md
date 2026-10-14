@@ -7,7 +7,8 @@ A 2D survival game built in Unity using C#, designed to showcase practical softw
 
 
 ## Game Preview
-### Main Menu: https://github.com/Goodluck178/downhill-dash/blob/main/assets/downhill-dash.gif
+### Main Menu: 
+https://github.com/Goodluck178/downhill-dash/blob/main/assets/downhill-dash.gif
 
 ### Gameplay Screenshot: 
 https://github.com/Goodluck178/downhill-dash/blob/main/assets/gameplay.gif
