@@ -55,7 +55,8 @@ Version Control:Git - GitHub
 - Audio feedback for movement, collisions, pickups, and death events
 - Modular script structure to support maintainability and future expansion
 
-How to Run the Game
+## How to Run the Game 
+
 1.	1. Install Unity Hub and Unity 6000.0.53f1.
 2.	2. Clone or download the Downhill Dash repository.
 3.	3. In Unity Hub, select Add and choose the project folder.
