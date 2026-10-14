@@ -44,7 +44,8 @@ Physics: Unity Rigidbody, Collider System, Raycasting for ground detection
 Tools: Visual Studio 2022/ Unity Editor
 Version Control:Git - GitHub
 
-Key features
+## Key features
+
 - Smooth horizontal player movement with screen-boundary clamping
 - Health system with damage response and game-over flow
 - Procedural obstacle spawning and wave progression
