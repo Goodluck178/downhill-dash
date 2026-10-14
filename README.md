@@ -6,8 +6,8 @@
 A 2D survival game built in Unity using C#, designed to showcase practical software engineering skills in gameplay systems, object-oriented design, state management, debugging, and iterative problem-solving. This project reflects the kind of hands-on development mindset I bring to Junior Software Developer and Graduate Associate roles: building functional systems, writing maintainable code, and translating ideas into working software with clear user value
 
 
-### Game Preview
-Main Menu: https://github.com/Goodluck178/downhill-dash/blob/main/assets/downhill-dash.gif
+## Game Preview
+### Main Menu: https://github.com/Goodluck178/downhill-dash/blob/main/assets/downhill-dash.gif
 
 ### Gameplay Screenshot: 
 https://github.com/Goodluck178/downhill-dash/blob/main/assets/gameplay.gif
