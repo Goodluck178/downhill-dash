@@ -13,7 +13,8 @@ https://github.com/Goodluck178/downhill-dash/blob/main/assets/downhill-dash.gif
 ### Gameplay Screenshot: 
 https://github.com/Goodluck178/downhill-dash/blob/main/assets/gameplay.gif
 
-Game Over Screen:  https://github.com/Goodluck178/downhill-dash/blob/main/assets/gameover.gif
+### Game Over Screen:  
+https://github.com/Goodluck178/downhill-dash/blob/main/assets/gameover.gif
 
 Gameplay GIF (Short Demo):  https://github.com/Goodluck178/downhill-dash/blob/main/assets/shortgameplaydemo.gif
 
