@@ -23,6 +23,7 @@ Downhill Dash is a fast-paced downhill racing game where players navigate dynami
 This project was developed to apply software engineering principles in a real-time interactive application.
 
 ### It demonstrates:
+
 - strong logic and problem-solving ability
 - understanding of object-oriented programming in C#
 - practical experience working with Unity scenes, components, and gameplay systems
