@@ -17,7 +17,8 @@ Game Over Screen:  https://github.com/Goodluck178/downhill-dash/blob/main/assets
 Gameplay GIF (Short Demo):  https://github.com/Goodluck178/downhill-dash/blob/main/assets/shortgameplaydemo.gif
 
 
-Game Overview
+## Game Overview
+
 Downhill Dash is a fast-paced downhill racing game where players navigate dynamic terrain, obstacles, and physics-based slopes to reach the finish line in the fastest time. The project demonstrates core competencies required for a Junior Software Developer / Graduate Associate role: Object-Oriented Programming, game loop optimization, input handling, and component based architecture.
 This project was developed to apply software engineering principles in a real-time interactive application.
 
