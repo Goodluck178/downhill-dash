@@ -37,11 +37,17 @@ This project was developed to apply software engineering principles in a real-ti
 ## Tech Stack
 
 Engine: Unity 2022 LTS
+
 Programming Language: C# (.NET)
+
 Graphics: Unity 2D sprites
+
 Concepts Applied: OOP, SOLID Principles, Component-Based Architecture, Prefab System, Coroutines, Event-Driven Programming
+
 Physics: Unity Rigidbody, Collider System, Raycasting for ground detection
+
 Tools: Visual Studio 2022/ Unity Editor
+
 Version Control:Git - GitHub
 
 ## Key features
